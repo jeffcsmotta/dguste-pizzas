@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D'Guste Pizzas e Lanches | Forno a Lenha em Caxias do Sul - Panazzolo</title>
+    <meta name="description" content="🍕 D’GUSTE Pizzas e Lanches — Sabor que chega até você! Pizzas artesanais assadas no forno a lenha, com massa leve e ingredientes selecionados. Lanches, combos e porções crocantes no Panazzolo, Caxias do Sul. Peça pelo WhatsApp!">
+    <meta name="keywords" content="Pizzaria Caxias do Sul, Pizza Panazzolo, D'Guste Pizzas, Pizza Forno a Lenha Caxias, Delivery Pizza Panazzolo, Lanches Caxias do Sul">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="D'Guste Pizzas e Lanches — Sabor que chega até você!">
+    <meta property="og:description" content="Pizzas artesanais assadas no forno a lenha, com massa leve e ingredientes selecionados. Experimente também nossos lanches, combos completos e porções crocantes!">
+    <meta property="og:image" content="assets/hero.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-info">
+                <span><i data-lucide="map-pin"></i> Rua João Mocelin, 1493 - Panazzolo, Caxias do Sul</span>
+                <span class="divider">|</span>
+                <span><i data-lucide="flame"></i> Pizzas Artesanais no Forno a Lenha</span>
+            </div>
+            <div class="top-contacts">
+                <a href="tel:5430759626"><i data-lucide="phone"></i> (54) 3075-9626</a>
+                <a href="https://wa.me/555430759626" target="_blank" class="top-wa">
+                    <svg class="wa-svg-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                        <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.764.459 3.487 1.333 5.006L2 22l5.127-1.34c1.464.798 3.116 1.218 4.88 1.218h.005c5.506 0 9.989-4.478 9.99-9.984 0-2.667-1.039-5.174-2.926-7.06A9.923 9.923 0 0 0 12.012 2zm5.82 14.161c-.244.688-1.424 1.318-1.96 1.365-.506.044-1.168.204-3.79-.877-2.825-1.163-4.63-4.043-4.77-4.232-.14-.187-1.144-1.523-1.144-2.905 0-1.382.723-2.062.98-2.344.257-.282.56-.352.747-.352.187 0 .374.002.538.01.176.008.412-.067.644.49.244.587.83 2.025.902 2.172.072.148.12.324.024.516-.096.192-.144.31-.288.48-.144.17-.304.38-.435.51-.144.143-.294.3-.127.587.167.287.74 1.22 1.587 1.975 1.09 0.971 2.008 1.272 2.295 1.415.287.143.456.12.625-.074.168-.192.72-.838.911-1.127.192-.288.384-.24.645-.144.26.096 1.656.78 1.943.923.287.143.48.216.551.336.072.12.072.696-.172 1.384z"/>
+                    </svg>
+                    <span>(54) 3075-9626</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <img src="assets/logo.png" alt="D'Guste Pizzas e Lanches Logo" class="brand-logo-img">
+            </a>
+
+            <nav class="nav-links">
+                <a href="#cardapio" class="nav-link active">Cardápio</a>
+                <a href="#sobre" class="nav-link">Sobre Nós</a>
+                <a href="#diferenciais" class="nav-link">Diferenciais</a>
+                <a href="#avaliacoes" class="nav-link">Avaliações</a>
+                <a href="#contato" class="nav-link">Localização</a>
+            </nav>
+
+            <div class="header-actions">
+                <div id="status-badge" class="status-badge checking">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Verificando...</span>
+                </div>
+                <button class="cart-toggle-btn" id="cart-toggle">
+                    <i data-lucide="shopping-bag"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                    <span class="cart-total-header" id="cart-total-header">R$ 0,00</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <video class="hero-video-bg" autoplay loop muted playsinline poster="assets/hero.png">
+            <source src="assets/hero.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <div class="hero-badge">
+                <i data-lucide="flame"></i> PIZZAS ARTESANAIS NO FORNO A LENHA & LANCHES
+            </div>
+            <h1 class="hero-title">
+                Sabor que chega <br>
+                <span class="highlight">até você!</span> ❤️
+            </h1>
+            <p class="hero-description">
+                Pizzas artesanais assadas no forno a lenha, com massa leve e ingredientes selecionados. Experimente também nossos lanches, combos completos e porções crocantes perfeitas para compartilhar! Delivery rápido e preparado com muito carinho no Panazzolo. Peça agora!
+            </p>
+            <div class="hero-buttons">
+                <a href="#cardapio" class="btn btn-primary">
+                    <i data-lucide="utensils"></i> Ver Cardápio & Pedir
+                </a>
+                <a href="https://wa.me/555430759626?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20D'Guste%20e%20gostaria%20de%20fazer%20um%20pedido." target="_blank" class="btn btn-whatsapp">
+                    <svg class="wa-svg-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.764.459 3.487 1.333 5.006L2 22l5.127-1.34c1.464.798 3.116 1.218 4.88 1.218h.005c5.506 0 9.989-4.478 9.99-9.984 0-2.667-1.039-5.174-2.926-7.06A9.923 9.923 0 0 0 12.012 2zm5.82 14.161c-.244.688-1.424 1.318-1.96 1.365-.506.044-1.168.204-3.79-.877-2.825-1.163-4.63-4.043-4.77-4.232-.14-.187-1.144-1.523-1.144-2.905 0-1.382.723-2.062.98-2.344.257-.282.56-.352.747-.352.187 0 .374.002.538.01.176.008.412-.067.644.49.244.587.83 2.025.902 2.172.072.148.12.324.024.516-.096.192-.144.31-.288.48-.144.17-.304.38-.435.51-.144.143-.294.3-.127.587.167.287.74 1.22 1.587 1.975 1.09 0.971 2.008 1.272 2.295 1.415.287.143.456.12.625-.074.168-.192.72-.838.911-1.127.192-.288.384-.24.645-.144.26.096 1.656.78 1.943.923.287.143.48.216.551.336.072.12.072.696-.172 1.384z"/>
+                    </svg>
+                    <span>Pedir pelo WhatsApp</span>
+                </a>
+            </div>
+            <div class="hero-features">
+                <div class="hero-feat"><i data-lucide="clock"></i> Delivery Rápido</div>
+                <div class="hero-feat"><i data-lucide="sparkles"></i> Ingredientes Selecionados</div>
+                <div class="hero-feat"><i data-lucide="flame"></i> Assadas no Forno a Lenha</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="section menu-section" id="cardapio">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="subtitle">NOSSO CARDÁPIO COMPLETO</span>
+                <h2 class="title">Escolha o seu sabor favorito</h2>
+                <p class="section-desc">Monte seu pedido online em instantes e envie direto para nosso WhatsApp.</p>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="category-filters">
+                <button class="filter-btn active" data-category="todos">
+                    <i data-lucide="grid"></i> Todos
+                </button>
+                <button class="filter-btn" data-category="tradicionais">
+                    <i data-lucide="pizza"></i> Pizzas Tradicionais
+                </button>
+                <button class="filter-btn" data-category="especiais">
+                    <i data-lucide="award"></i> Pizzas Especiais
+                </button>
+                <button class="filter-btn" data-category="doces">
+                    <i data-lucide="cookie"></i> Pizzas Doces
+                </button>
+                <button class="filter-btn" data-category="calzones">
+                    <i data-lucide="sandwich"></i> Calzones
+                </button>
+                <button class="filter-btn" data-category="lanches">
+                    <i data-lucide="hamburger"></i> Lanches & Porções
+                </button>
+                <button class="filter-btn" data-category="combos">
+                    <i data-lucide="gift"></i> Combos
+                </button>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="menu-grid" id="menu-grid">
+                <!-- Items populated via app.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about-section" id="sobre">
+        <div class="container">
+            <div class="about-card">
+                <div class="about-grid">
+                    <div class="about-text">
+                        <span class="subtitle">CONHEÇA A D'GUSTE</span>
+                        <h2 class="title">Sabor que chega até você! ❤️</h2>
+                        <p class="about-bio-quote">
+                            "🍕 <strong>D’GUSTE Pizzas e Lanches</strong> — Sabor que chega até você! Pizzas artesanais assadas no forno a lenha, com massa leve e ingredientes selecionados. Experimente também nossos lanches, combos completos e porções crocantes perfeitas para compartilhar! Temos bebidas sempre geladas para acompanhar o seu pedido. Delivery rápido e preparado com muito carinho. ❤️ Peça agora e sinta o sabor de verdade!"
+                        </p>
+                        <div class="about-tags">
+                            <span class="tag-item"><i data-lucide="flame"></i> Forno a Lenha</span>
+                            <span class="tag-item"><i data-lucide="heart"></i> Ingredientes Selecionados</span>
+                            <span class="tag-item"><i data-lucide="truck"></i> Delivery Rápido</span>
+                            <span class="tag-item"><i data-lucide="thumbs-up"></i> Bebidas Geladas</span>
+                        </div>
+                    </div>
+                    <div class="about-contact-box">
+                        <h3><i data-lucide="sparkles"></i> Peça sem complicação</h3>
+                        <p>Atendimento direto e rápido no WhatsApp oficial do Panazzolo.</p>
+                        <a href="https://wa.me/555430759626?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20pedido%20na%20D'Guste." target="_blank" class="btn btn-whatsapp btn-block">
+                            <svg class="wa-svg-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                                <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.764.459 3.487 1.333 5.006L2 22l5.127-1.34c1.464.798 3.116 1.218 4.88 1.218h.005c5.506 0 9.989-4.478 9.99-9.984 0-2.667-1.039-5.174-2.926-7.06A9.923 9.923 0 0 0 12.012 2zm5.82 14.161c-.244.688-1.424 1.318-1.96 1.365-.506.044-1.168.204-3.79-.877-2.825-1.163-4.63-4.043-4.77-4.232-.14-.187-1.144-1.523-1.144-2.905 0-1.382.723-2.062.98-2.344.257-.282.56-.352.747-.352.187 0 .374.002.538.01.176.008.412-.067.644.49.244.587.83 2.025.902 2.172.072.148.12.324.024.516-.096.192-.144.31-.288.48-.144.17-.304.38-.435.51-.144.143-.294.3-.127.587.167.287.74 1.22 1.587 1.975 1.09 0.971 2.008 1.272 2.295 1.415.287.143.456.12.625-.074.168-.192.72-.838.911-1.127.192-.288.384-.24.645-.144.26.096 1.656.78 1.943.923.287.143.48.216.551.336.072.12.072.696-.172 1.384z"/>
+                            </svg>
+                            <span>WhatsApp: (54) 3075-9626</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offer Banner Section (DARK CONTAINER) -->
+    <section class="section special-offer-section">
+        <div class="container">
+            <div class="special-offer-card">
+                <div class="special-offer-img-box">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80" alt="Pizza Strogonoff de Filé Especial" class="special-offer-img">
+                    <span class="special-badge"><i data-lucide="flame"></i> Destaque da Semana</span>
+                </div>
+                <div class="special-offer-content">
+                    <span class="subtitle-orange">EDIÇÃO LIMITADA • FORNO A LENHA</span>
+                    <h2 class="special-title">Pizza Strogonoff de Filé Mignon</h2>
+                    <p class="special-desc">Tiras suculentas de filé mignon ao molho de strogonoff cremoso da casa, cogumelos champignon frescos, muçarela e batata palha super crocante assada no forno a lenha.</p>
+                    <div class="special-price-row">
+                        <div class="special-price">
+                            <span class="old-price">R$ 96,00</span>
+                            <span class="new-price">R$ 86,00 <small>(Tamanho G 35cm)</small></span>
+                        </div>
+                        <button class="btn btn-primary" onclick="addToCart('p6')">
+                            <i data-lucide="shopping-bag"></i> Pedir Esta Especial
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentials Section (LIGHT CONTAINER) -->
+    <section class="section differentials-section" id="diferenciais">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="subtitle">QUALIDADE & PRATICIDADE</span>
+                <h2 class="title">Por que pedir na D'Guste?</h2>
+            </div>
+            <div class="differentials-grid">
+                <div class="diff-card">
+                    <div class="diff-icon"><i data-lucide="zap"></i></div>
+                    <h3>Pedido em 2 Clics</h3>
+                    <p>Sem aplicativos pesados nem cadastros demorados. Monte seu carrinho e envie direto para o WhatsApp oficial.</p>
+                </div>
+                <div class="diff-card">
+                    <div class="diff-icon"><i data-lucide="flame"></i></div>
+                    <h3>Forno a Lenha de Verdade</h3>
+                    <p>Massa leve, fermentação especial e aquele sabor defumado inconfundível do forno a lenha artesanal.</p>
+                </div>
+                <div class="diff-card">
+                    <div class="diff-icon"><i data-lucide="truck"></i></div>
+                    <h3>Delivery Rápido no Panazzolo</h3>
+                    <p>Entrega ágil no Panazzolo e região. Sua pizza chega crocante e estalando de quente na sua mesa.</p>
+                </div>
+                <div class="diff-card">
+                    <div class="diff-icon"><i data-lucide="heart"></i></div>
+                    <h3>Lanches & Porções Crocantes</h3>
+                    <p>Além de pizzas incríveis, temos x-is suculentos, combos completos e porções crocantes para toda a família.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section reviews-section" id="avaliacoes">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="subtitle">DEPOIMENTOS DOS CLIENTES</span>
+                <h2 class="title">O que nossos clientes dizem</h2>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Sensacional! Adorei a praticidade do site. Fiz o pedido em menos de 1 minuto pelo WhatsApp e a pizza chegou quentinha no Panazzolo!"</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">RC</div>
+                        <div>
+                            <strong>Ricardo C.</strong>
+                            <span>Morador do Panazzolo</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Pizzas maravilhosas com borda recheada e massa muito leve. Atendimento super rápido no WhatsApp e entrega pontual!"</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">MS</div>
+                        <div>
+                            <strong>Mariana S.</strong>
+                            <span>Panazzolo - Caxias do Sul</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Os lanches e combos são top! Porção de batata bem crocante e a pizza no forno a lenha é a melhor da região."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">FO</div>
+                        <div>
+                            <strong>Fernando O.</strong>
+                            <span>Caxias do Sul</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Contact Section -->
+    <section class="section contact-section" id="contato">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <span class="subtitle">RETIRADA OU TELE-ENTREGA</span>
+                    <h2 class="title">Localização & Atendimento</h2>
+                    <p class="contact-intro">Estamos localizados no coração do bairro Panazzolo em Caxias do Sul. Venha retirar seu pedido quentinho ou solicite tele-entrega!</p>
+                    
+                    <div class="info-list">
+                        <div class="info-item">
+                            <div class="info-icon"><i data-lucide="map-pin"></i></div>
+                            <div>
+                                <strong>Endereço:</strong>
+                                <p>Rua João Mocelin, 1493 - Sala 01<br>Bairro Panazzolo, Caxias do Sul - RS, 95082-114</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i data-lucide="clock"></i></div>
+                            <div>
+                                <strong>Horário de Atendimento:</strong>
+                                <p>Segunda a Sábado: 18h30 às 23h50<br><span class="closed-tag">Domingos: Fechado</span></p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i data-lucide="phone"></i></div>
+                            <div>
+                                <strong>Telefone Fixo:</strong>
+                                <p><a href="tel:5430759626">(54) 3075-9626</a></p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <svg class="wa-svg-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                                    <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.764.459 3.487 1.333 5.006L2 22l5.127-1.34c1.464.798 3.116 1.218 4.88 1.218h.005c5.506 0 9.989-4.478 9.99-9.984 0-2.667-1.039-5.174-2.926-7.06A9.923 9.923 0 0 0 12.012 2zm5.82 14.161c-.244.688-1.424 1.318-1.96 1.365-.506.044-1.168.204-3.79-.877-2.825-1.163-4.63-4.043-4.77-4.232-.14-.187-1.144-1.523-1.144-2.905 0-1.382.723-2.062.98-2.344.257-.282.56-.352.747-.352.187 0 .374.002.538.01.176.008.412-.067.644.49.244.587.83 2.025.902 2.172.072.148.12.324.024.516-.096.192-.144.31-.288.48-.144.17-.304.38-.435.51-.144.143-.294.3-.127.587.167.287.74 1.22 1.587 1.975 1.09 0.971 2.008 1.272 2.295 1.415.287.143.456.12.625-.074.168-.192.72-.838.911-1.127.192-.288.384-.24.645-.144.26.096 1.656.78 1.943.923.287.143.48.216.551.336.072.12.072.696-.172 1.384z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>WhatsApp Oficial de Pedidos:</strong>
+                                <p><a href="https://wa.me/555430759626" target="_blank" class="wa-link-highlight">(54) 3075-9626</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="directions-btns">
+                        <a href="https://maps.google.com/?q=Rua+Joao+Mocelin+1493+Caxias+do+Sul" target="_blank" class="btn btn-outline">
+                            <i data-lucide="navigation"></i> Google Maps
+                        </a>
+                        <a href="https://waze.com/ul?q=Rua+Joao+Mocelin+1493+Caxias+do+Sul" target="_blank" class="btn btn-outline">
+                            <i data-lucide="map"></i> Waze
+                        </a>
+                    </div>
+                </div>
+
+                <div class="map-card">
+                    <iframe 
+                        title="Mapa D'Guste Pizzas" 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3483.567!2d-51.178!3d-29.168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951ea320a0000001%3A0x0!2sRua+Jo%C3%A3o+Mocelin%2C+1493+-+Panazzolo%2C+Caxias+do+Sul+-+RS!5e0!3m2!1spt-BR!2sbr!4v1700000000000" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-col">
+                <div class="logo">
+                    <img src="assets/logo.png" alt="D'Guste Pizzas e Lanches Logo" class="brand-logo-img-footer">
+                </div>
+                <p>🍕 <strong>D'Guste Pizzas e Lanches</strong> — Sabor que chega até você! Pizzas artesanais assadas no forno a lenha no bairro Panazzolo, Caxias do Sul - RS.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="#cardapio">Cardápio</a></li>
+                    <li><a href="#sobre">Sobre Nós</a></li>
+                    <li><a href="#diferenciais">Diferenciais</a></li>
+                    <li><a href="#avaliacoes">Avaliações</a></li>
+                    <li><a href="#contato">Localização</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contato Directo</h4>
+                <p>📍 Rua João Mocelin, 1493 - Panazzolo</p>
+                <p>📞 (54) 3075-9626</p>
+                <p class="footer-wa">
+                    <svg class="wa-svg-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                        <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.764.459 3.487 1.333 5.006L2 22l5.127-1.34c1.464.798 3.116 1.218 4.88 1.218h.005c5.506 0 9.989-4.478 9.99-9.984 0-2.667-1.039-5.174-2.926-7.06A9.923 9.923 0 0 0 12.012 2zm5.82 14.161c-.244.688-1.424 1.318-1.96 1.365-.506.044-1.168.204-3.79-.877-2.825-1.163-4.63-4.043-4.77-4.232-.14-.187-1.144-1.523-1.144-2.905 0-1.382.723-2.062.98-2.344.257-.282.56-.352.747-.352.187 0 .374.002.538.01.176.008.412-.067.644.49.244.587.83 2.025.902 2.172.072.148.12.324.024.516-.096.192-.144.31-.288.48-.144.17-.304.38-.435.51-.144.143-.294.3-.127.587.167.287.74 1.22 1.587 1.975 1.09 0.971 2.008 1.272 2.295 1.415.287.143.456.12.625-.074.168-.192.72-.838.911-1.127.192-.288.384-.24.645-.144.26.096 1.656.78 1.943.923.287.143.48.216.551.336.072.12.072.696-.172 1.384z"/>
+                    </svg>
+                    <a href="https://wa.me/555430759626" target="_blank">(54) 3075-9626</a>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2026 D'Guste Pizzas e Lanches. Todos os direitos reservados. Projeto por <a href="https://jeffmotta.framer.website/" target="_blank" class="footer-dev-link">Jeff Motta (Onira Labs)</a> • <a href="https://www.linkedin.com/in/jeff-motta/" target="_blank" class="footer-dev-link">LinkedIn</a></p>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Drawer / Modal -->
+    <div class="cart-drawer-overlay" id="cart-overlay"></div>
+    <aside class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h3><i data-lucide="shopping-bag"></i> Seu Pedido</h3>
+            <button class="cart-close" id="cart-close">&times;</button>
+        </div>
+        
+        <div class="cart-body" id="cart-items-container">
+            <!-- Empty State or Items inserted via JS -->
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-option-group">
+                <label>Forma de Entrega:</label>
+                <div class="delivery-toggle">
+                    <button type="button" class="del-btn active" data-type="delivery">
+                        <i data-lucide="truck"></i> Delivery (Panazzolo/Região)
+                    </button>
+                    <button type="button" class="del-btn" data-type="retirada">
+                        <i data-lucide="store"></i> Retirada no Balcão
+                    </button>
+                </div>
+            </div>
+
+            <div class="cart-option-group">
+                <label>Forma de Pagamento:</label>
+                <select id="payment-method" class="cart-select">
+                    <option value="Pix (Chave informada no pedido)">Pix (Chave Pix no WhatsApp)</option>
+                    <option value="Cartão de Crédito/Débito na entrega">Cartão de Crédito/Débito (Máquina)</option>
+                    <option value="Dinheiro">Dinheiro (Solicitar Troco)</option>
+                </select>
+            </div>
+
+            <div class="cart-summary">
+                <div class="summary-line">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal">R$ 0,00</span>
+                </div>
+                <div class="summary-line">
+                    <span>Taxa de Entrega:</span>
+                    <span id="cart-delivery-fee">R$ 7,00</span>
+                </div>
+                <div class="summary-line total">
+                    <span>Total Estimado:</span>
+                    <span id="cart-grand-total">R$ 0,00</span>
+                </div>
+            </div>
+
+            <button class="btn btn-whatsapp btn-block" id="btn-send-whatsapp">
+                <svg class="wa-svg-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.764.459 3.487 1.333 5.006L2 22l5.127-1.34c1.464.798 3.116 1.218 4.88 1.218h.005c5.506 0 9.989-4.478 9.99-9.984 0-2.667-1.039-5.174-2.926-7.06A9.923 9.923 0 0 0 12.012 2zm5.82 14.161c-.244.688-1.424 1.318-1.96 1.365-.506.044-1.168.204-3.79-.877-2.825-1.163-4.63-4.043-4.77-4.232-.14-.187-1.144-1.523-1.144-2.905 0-1.382.723-2.062.98-2.344.257-.282.56-.352.747-.352.187 0 .374.002.538.01.176.008.412-.067.644.49.244.587.83 2.025.902 2.172.072.148.12.324.024.516-.096.192-.144.31-.288.48-.144.17-.304.38-.435.51-.144.143-.294.3-.127.587.167.287.74 1.22 1.587 1.975 1.09 0.971 2.008 1.272 2.295 1.415.287.143.456.12.625-.074.168-.192.72-.838.911-1.127.192-.288.384-.24.645-.144.26.096 1.656.78 1.943.923.287.143.48.216.551.336.072.12.072.696-.172 1.384z"/>
+                </svg>
+                <span>Enviar Pedido via WhatsApp</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Proposal Callout Banner Section -->
+    <section class="proposal-banner-section">
+        <div class="container">
+            <div class="prop-banner-card">
+                <div class="prop-banner-content">
+                    <span class="prop-badge"><i data-lucide="handshake"></i> PROPOSTA DE PARCERIA EXCLUSIVA</span>
+                    <h2>Gostou desta versão do site da D'Guste?</h2>
+                    <p>Conheça nossa proposta comercial transparente de R$ 1.500 (sendo R$ 500 em permuta), dados de mercado e como registrar o domínio <strong>dgustelanches.com.br</strong> hoje mesmo.</p>
+                </div>
+                <div class="prop-banner-action">
+                    <a href="proposta.html" class="btn btn-primary btn-lg">
+                        <i data-lucide="arrow-right"></i> Ver Proposta Comercial Completa
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Proposal Badge Button -->
+    <a href="proposta.html" class="floating-proposal-badge">
+        <span class="badge-dot"></span>
+        <i data-lucide="handshake"></i>
+        <span>Proposta de Parceria (R$ 1.500 | R$ 500 Permuta)</span>
+    </a>
+
+    <script src="app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
+
