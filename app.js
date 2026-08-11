@@ -377,6 +377,8 @@ window.changeQty = function(itemKey, delta) {
     updateCartUI();
 };
 
+let selectedPayment = 'Pix (Chave informada no pedido)';
+
 // Event Listeners Setup
 function setupEventListeners() {
     // Filter buttons
@@ -401,6 +403,16 @@ function setupEventListeners() {
             btn.classList.add('active');
             deliveryType = btn.getAttribute('data-type');
             updateCartUI();
+        });
+    });
+
+    // Payment type toggles
+    const payBtns = document.querySelectorAll('.pay-btn');
+    payBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            payBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedPayment = btn.getAttribute('data-pay');
         });
     });
 
@@ -459,7 +471,7 @@ function sendOrderToWhatsapp() {
     const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
     const deliveryFee = deliveryType === 'delivery' ? 7.00 : 0.00;
     const grandTotal = subtotal + deliveryFee;
-    const payment = paymentMethod.value;
+    const payment = selectedPayment || 'Pix';
 
     let text = `🍕 *NOVO PEDIDO DE PIZZA - D'GUSTE WEBSITE*\n`;
     text += `-------------------------------------------\n\n`;

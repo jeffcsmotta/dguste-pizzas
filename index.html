@@ -419,11 +419,17 @@
 
             <div class="cart-option-group">
                 <label>Forma de Pagamento:</label>
-                <select id="payment-method" class="cart-select">
-                    <option value="Pix (Chave informada no pedido)">Pix (Chave Pix no WhatsApp)</option>
-                    <option value="Cartão de Crédito/Débito na entrega">Cartão de Crédito/Débito (Máquina)</option>
-                    <option value="Dinheiro">Dinheiro (Solicitar Troco)</option>
-                </select>
+                <div class="payment-toggle">
+                    <button type="button" class="pay-btn active" data-pay="Pix (Chave informada no pedido)">
+                        <i data-lucide="qr-code"></i> Pix
+                    </button>
+                    <button type="button" class="pay-btn" data-pay="Cartão de Crédito/Débito na entrega">
+                        <i data-lucide="credit-card"></i> Cartão
+                    </button>
+                    <button type="button" class="pay-btn" data-pay="Dinheiro">
+                        <i data-lucide="banknote"></i> Dinheiro
+                    </button>
+                </div>
             </div>
 
             <div class="cart-summary">
@@ -446,11 +452,6 @@
                     <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.764.459 3.487 1.333 5.006L2 22l5.127-1.34c1.464.798 3.116 1.218 4.88 1.218h.005c5.506 0 9.989-4.478 9.99-9.984 0-2.667-1.039-5.174-2.926-7.06A9.923 9.923 0 0 0 12.012 2zm5.82 14.161c-.244.688-1.424 1.318-1.96 1.365-.506.044-1.168.204-3.79-.877-2.825-1.163-4.63-4.043-4.77-4.232-.14-.187-1.144-1.523-1.144-2.905 0-1.382.723-2.062.98-2.344.257-.282.56-.352.747-.352.187 0 .374.002.538.01.176.008.412-.067.644.49.244.587.83 2.025.902 2.172.072.148.12.324.024.516-.096.192-.144.31-.288.48-.144.17-.304.38-.435.51-.144.143-.294.3-.127.587.167.287.74 1.22 1.587 1.975 1.09 0.971 2.008 1.272 2.295 1.415.287.143.456.12.625-.074.168-.192.72-.838.911-1.127.192-.288.384-.24.645-.144.26.096 1.656.78 1.943.923.287.143.48.216.551.336.072.12.072.696-.172 1.384z"/>
                 </svg>
                 <span>Enviar Pedido via WhatsApp</span>
-            </button>
-
-            <button type="button" class="btn btn-outline btn-block" id="btn-continue-shopping" onclick="window.closeCart()" style="margin-top: 10px; background: rgba(255,255,255,0.06); color: #FFF; border: 1px solid rgba(255,255,255,0.15);">
-                <i data-lucide="arrow-left"></i>
-                <span>+ Adicionar Mais Itens ao Pedido</span>
             </button>
         </div>
     </aside>

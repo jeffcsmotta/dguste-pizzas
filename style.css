@@ -1319,6 +1319,20 @@ h1, h2, h3, h4, .brand-name {
     overflow-y: auto;
 }
 
+/* Hide all scrollbars completely inside cart drawer */
+.cart-drawer, .cart-body, .cart-footer {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.cart-drawer::-webkit-scrollbar,
+.cart-body::-webkit-scrollbar,
+.cart-footer::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
 .cart-option-group {
     margin-bottom: 16px;
 }
@@ -1331,8 +1345,41 @@ h1, h2, h3, h4, .brand-name {
     margin-bottom: 6px;
 }
 
-.delivery-toggle {
+.delivery-toggle, .payment-toggle {
     display: flex;
+    gap: 6px;
+}
+
+.del-btn, .pay-btn {
+    flex: 1;
+    padding: 8px 10px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    background: #1C1C22;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #A1A1AA;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.del-btn:hover, .pay-btn:hover {
+    border-color: var(--primary);
+    color: #FFFFFF;
+}
+
+.del-btn.active, .pay-btn.active {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(245, 158, 11, 0.15);
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.15);
+}
     gap: 8px;
 }
 
