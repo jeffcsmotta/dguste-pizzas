@@ -351,9 +351,9 @@ function updateCartUI() {
                     <span class="cart-item-price">R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}</span>
                 </div>
                 <div class="cart-controls">
-                    <button class="cart-qty-btn" onclick="changeQty('${item.key}', -1)">-</button>
-                    <span>${item.quantity}</span>
-                    <button class="cart-qty-btn" onclick="changeQty('${item.key}', 1)">+</button>
+                    <button class="cart-qty-btn" onclick="window.changeQty('${item.key}', -1)" aria-label="Diminuir quantidade">-</button>
+                    <span class="cart-qty-num">${item.quantity} un</span>
+                    <button class="cart-qty-btn" onclick="window.changeQty('${item.key}', 1)" aria-label="Aumentar quantidade">+</button>
                 </div>
             </div>
         `).join('');
