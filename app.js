@@ -512,41 +512,57 @@ function sendOrderToWhatsapp() {
 
     const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
     const deliveryFee = deliveryType === 'delivery' ? 7.00 : 0.00;
-    const grandTotal = subtotal + deliveryFee;
 
-    let text = `🍕 *NOVO PEDIDO DE PIZZA - D'GUSTE*\n`;
-    text += `-------------------------------------------\n`;
-    text += `📦 *Tipo:* ${deliveryType === 'delivery' ? '🛵 Tele-Entrega' : '🛍️ Retirada no Balcão'}\n`;
-    if (name) text += `👤 *Cliente:* ${name}\n`;
-    if (deliveryType === 'delivery' && address) {
-        text += `🏠 *Endereço:* ${address}\n`;
-    }
-    text += `\n*🛒 ITENS DO PEDIDO:*\n`;
+    let text = `${deliveryType === 'delivery' ? 'Entrega em domicílio' : 'Retirada no balcão'}
 
-    cart.forEach((item, i) => {
-        text += `${i+1}. *${item.title}* (${item.size})\n`;
-        text += `   Qtd: ${item.quantity}x • R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}\n\n`;
+`;
+
+    cart.forEach(item => {
+        const itemSum = item.price * item.quantity;
+        const size = item.size ? ` · ${item.size}` : '';
+        text += `*${item.quantity}x* ${item.title}${size}
+`;
+        text += `R$ ${itemSum.toFixed(2).replace('.', ',')}
+`;
+        if (item.notes) text += `_Obs: ${item.notes}_
+`;
+        text += `
+`;
     });
 
-    text += `-------------------------------------------\n`;
-    text += `💰 *Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
-    text += `🛵 *Taxa de Entrega:* ${deliveryType === 'delivery' ? 'R$ 7,00' : 'Grátis (Balcão)'}\n`;
-    text += `💰 *TOTAL FINAL:* R$ ${grandTotal.toFixed(2).replace('.', ',')}\n\n`;
+    text += `*Itens: R$ ${subtotal.toFixed(2).replace('.', ',')}*
+`;
+    if (deliveryType === 'delivery') {
+        text += deliveryFee > 0 ? `Entrega: R$ ${deliveryFee.toFixed(2).replace('.', ',')}
+` : `Entrega a combinar
+`;
+    }
+    text += `
+`;
 
-    text += `💳 *FORMA DE PAGAMENTO:*\n`;
+    if (name) text += `*${name}*
+`;
+    if (deliveryType === 'delivery' && address) {
+        text += `${address}
+`;
+    }
+
     const isCash = selectedPayment.toLowerCase().includes('dinheiro');
     const isPix = selectedPayment.toLowerCase().includes('pix');
 
     if (isPix) {
-        text += `⚡ *PIX (Chave: 5430759626 - Valor: R$ ${grandTotal.toFixed(2).replace('.', ',')})*\n`;
-        text += `_Anexando o comprovante em seguida!_\n`;
+        text += `Pagamento em Pix — combinamos a chave por aqui
+`;
     } else if (isCash) {
-        text += `💵 *Dinheiro* ${cashChange ? `(Troco para R$ ${cashChange})` : '(Sem troco)'}\n`;
+        text += `Pagamento em dinheiro — ${cashChange ? `troco para R$ ${cashChange}` : 'sem troco'}
+`;
     } else {
-        text += `💳 *Cartão de Crédito/Débito (Levar maquininha)*\n`;
+        text += `Pagamento no cartão — favor levar a maquininha
+`;
     }
 
-    text += `\n_Pedido enviado pelo Site Oficial D'Guste_`;
+    text += `
+_Enviado pelo site da D'Guste Pizzas_`;
 
     const phone = "555430759626";
     const encodedText = encodeURIComponent(text);
