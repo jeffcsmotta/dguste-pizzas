@@ -514,7 +514,9 @@ function sendOrderToWhatsapp() {
     const deliveryFee = deliveryType === 'delivery' ? 7.00 : 0.00;
     const total = subtotal + deliveryFee;
 
-    let text = `${deliveryType === 'delivery' ? 'Entrega em domicílio' : 'Retirada no balcão'}
+    let text = `_pedido via site by Onira.fly_
+
+${deliveryType === 'delivery' ? 'Solicitação de Tele-Entrega' : 'Solicitação de Retirada no balcão'}
 
 `;
 
