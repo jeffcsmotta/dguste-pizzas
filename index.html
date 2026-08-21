@@ -392,24 +392,37 @@
         </div>
     </footer>
 
-    <!-- Shopping Cart Drawer / Modal -->
+    <!-- Shopping Cart Drawer (CLAEM MASTER TEMPLATE STRUCTURE) -->
     <div class="cart-drawer-overlay" id="cart-overlay" onclick="window.closeCart()"></div>
     <aside class="cart-drawer" id="cart-drawer">
+        <!-- Fixed Drawer Header (Crisp #FFFFFF Title & ALWAYS ORANGE Pill Button Top Right) -->
         <div class="cart-header">
-            <h3><i data-lucide="shopping-bag"></i> Seu Pedido</h3>
-            <button class="cart-close" id="cart-close" onclick="window.closeCart()" aria-label="Fechar Carrinho">&times;</button>
+            <div class="cart-header-title">
+                <i data-lucide="shopping-bag"></i>
+                <span>Seu Pedido D'Guste</span>
+            </div>
+            <button type="button" class="btn-continue-shopping" onclick="window.closeCart()" aria-label="Continuar Escolhendo">
+                <i data-lucide="arrow-left" style="width:14px; height:14px;"></i>
+                <span>Continuar Escolhendo</span>
+            </button>
         </div>
         
-        <div class="cart-body" id="cart-items-container">
-            <!-- Empty State or Items inserted via JS -->
-        </div>
+        <!-- Single Unified Scrollable Body -->
+        <div class="cart-body">
+            <!-- Cart Items Section -->
+            <div class="cart-section">
+                <div class="cart-section-title">ITENS DO PEDIDO</div>
+                <div id="cart-items-container" class="cart-items-container">
+                    <!-- JS populated -->
+                </div>
+            </div>
 
-        <div class="cart-footer">
+            <!-- Delivery Type Toggle -->
             <div class="cart-option-group">
-                <label>Forma de Entrega:</label>
+                <label>FORMA DE ENTREGA / RETIRADA:</label>
                 <div class="delivery-toggle">
                     <button type="button" class="del-btn active" data-type="delivery">
-                        <i data-lucide="truck"></i> Delivery (Panazzolo/Região)
+                        <i data-lucide="truck"></i> Delivery (R$ 7,00)
                     </button>
                     <button type="button" class="del-btn" data-type="retirada">
                         <i data-lucide="store"></i> Retirada no Balcão
@@ -417,21 +430,55 @@
                 </div>
             </div>
 
+            <!-- Address / Customer Form -->
+            <div class="cart-option-group" id="address-box">
+                <label>SEUS DADOS PARA ENTREGA:</label>
+                <input type="text" id="cust-name" class="input-dark" placeholder="Seu Nome Completo" style="margin-bottom:8px;">
+                <input type="text" id="cust-address" class="input-dark" placeholder="Endereço Completo de Entrega (Rua, Nº, Bairro)">
+            </div>
+
+            <!-- Payment Method Toggle -->
             <div class="cart-option-group">
-                <label>Forma de Pagamento:</label>
+                <label>FORMA DE PAGAMENTO:</label>
                 <div class="payment-toggle">
-                    <button type="button" class="pay-btn active" data-pay="Pix (Chave informada no pedido)">
+                    <button type="button" class="pay-btn active" data-pay="Pix (Chave Copia e Cola)">
                         <i data-lucide="qr-code"></i> Pix
                     </button>
-                    <button type="button" class="pay-btn" data-pay="Cartão de Crédito/Débito na entrega">
+                    <button type="button" class="pay-btn" data-pay="Cartão de Crédito/Débito">
                         <i data-lucide="credit-card"></i> Cartão
                     </button>
                     <button type="button" class="pay-btn" data-pay="Dinheiro">
                         <i data-lucide="banknote"></i> Dinheiro
                     </button>
                 </div>
+
+                <!-- Cash Change Box -->
+                <div id="cash-change-box" style="display:none; margin-top:8px;">
+                    <input type="text" id="cash-change-val" class="input-dark" placeholder="Troco para quanto? Ex: R$ 50,00">
+                </div>
+
+                <!-- Pix Lock Info Box with Dynamic QR Code -->
+                <div id="pix-lock-box" class="pix-lock-box">
+                    <div class="pix-lock-title">
+                        <i data-lucide="shield-check"></i>
+                        <span>Pix Copia e Cola &amp; QR Code (Valor Travado)</span>
+                    </div>
+                    <div class="pix-qr-container">
+                        <img id="pix-qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&amp;data=5430759626" alt="Pix QR Code D'Guste" class="pix-qr-code">
+                        <div class="pix-qr-info">
+                            <p class="pix-lock-desc">
+                                Valor exato: <strong id="pix-locked-amount" style="color:#FFF;">R$ 0,00</strong>.<br>
+                                Escaneie a imagem com o aplicativo do seu banco ou copie a chave abaixo.
+                            </p>
+                            <button type="button" class="btn-copy-pix" onclick="window.copyPixKey()" id="btn-copy-pix-key">
+                                <i data-lucide="copy"></i> Copiar Chave Pix
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
+            <!-- Summary Breakdown -->
             <div class="cart-summary">
                 <div class="summary-line">
                     <span>Subtotal:</span>
@@ -443,16 +490,20 @@
                 </div>
                 <div class="summary-line total">
                     <span>Total Estimado:</span>
-                    <span id="cart-grand-total">R$ 0,00</span>
+                    <span id="cart-total-price">R$ 0,00</span>
                 </div>
             </div>
 
-            <button class="btn btn-whatsapp btn-block" id="btn-send-whatsapp">
-                <svg class="wa-svg-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                    <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.764.459 3.487 1.333 5.006L2 22l5.127-1.34c1.464.798 3.116 1.218 4.88 1.218h.005c5.506 0 9.989-4.478 9.99-9.984 0-2.667-1.039-5.174-2.926-7.06A9.923 9.923 0 0 0 12.012 2zm5.82 14.161c-.244.688-1.424 1.318-1.96 1.365-.506.044-1.168.204-3.79-.877-2.825-1.163-4.63-4.043-4.77-4.232-.14-.187-1.144-1.523-1.144-2.905 0-1.382.723-2.062.98-2.344.257-.282.56-.352.747-.352.187 0 .374.002.538.01.176.008.412-.067.644.49.244.587.83 2.025.902 2.172.072.148.12.324.024.516-.096.192-.144.31-.288.48-.144.17-.304.38-.435.51-.144.143-.294.3-.127.587.167.287.74 1.22 1.587 1.975 1.09 0.971 2.008 1.272 2.295 1.415.287.143.456.12.625-.074.168-.192.72-.838.911-1.127.192-.288.384-.24.645-.144.26.096 1.656.78 1.943.923.287.143.48.216.551.336.072.12.072.696-.172 1.384z"/>
-                </svg>
+            <!-- Submit CTA -->
+            <button type="button" class="btn btn-whatsapp btn-block" onclick="window.sendWhatsAppOrder()" id="btn-send-whatsapp">
+                <i data-lucide="send"></i>
                 <span>Enviar Pedido via WhatsApp</span>
             </button>
+
+            <!-- TECNOLOGIA BY ONIRA LABS SIGNATURE -->
+            <div class="onira-signature">
+                <span>Tecnologia por <strong>Onira Labs</strong></span>
+            </div>
         </div>
     </aside>
 

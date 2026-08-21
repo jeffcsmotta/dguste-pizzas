@@ -360,10 +360,21 @@ function updateCartUI() {
     }
 
     cartSubtotal.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-    cartDeliveryFee.textContent = deliveryType === 'delivery' ? 'R$ 7,00' : 'Grátis (Retirada)';
-    cartGrandTotal.textContent = `R$ ${grandTotal.toFixed(2).replace('.', ',')}`;
+    if (cartDeliveryFee) cartDeliveryFee.textContent = deliveryType === 'delivery' ? 'R$ 7,00' : 'Grátis (Balcão)';
+    
+    const cartTotalPrice = document.getElementById('cart-total-price') || cartGrandTotal;
+    if (cartTotalPrice) cartTotalPrice.textContent = `R$ ${grandTotal.toFixed(2).replace('.', ',')}`;
 
-    lucide.createIcons();
+    const pixAmount = document.getElementById('pix-locked-amount');
+    if (pixAmount) pixAmount.textContent = `R$ ${grandTotal.toFixed(2).replace('.', ',')}`;
+
+    const pixQrImg = document.getElementById('pix-qr-img');
+    if (pixQrImg) {
+        const qrData = encodeURIComponent(`Chave Pix D'Guste: 5430759626 | Valor: R$ ${grandTotal.toFixed(2).replace('.', ',')}`);
+        pixQrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${qrData}`;
+    }
+
+    if (window.lucide) lucide.createIcons();
 }
 
 window.changeQty = function(itemKey, delta) {
@@ -377,11 +388,41 @@ window.changeQty = function(itemKey, delta) {
     updateCartUI();
 };
 
-let selectedPayment = 'Pix (Chave informada no pedido)';
+let selectedPayment = 'Pix (Chave Copia e Cola)';
+
+// Copy Pix Key with Interactive Color State & Feedback (Padrão Claem)
+window.copyPixKey = function () {
+    const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+    const deliveryFee = deliveryType === 'delivery' ? 7.00 : 0.00;
+    const grandTotal = subtotal + deliveryFee;
+    const pixKey = '5430759626';
+
+    const copyBtn = document.getElementById('btn-copy-pix-key');
+
+    const handleSuccess = () => {
+        showToast(`Chave Pix (${pixKey}) copiada! Valor: R$ ${grandTotal.toFixed(2).replace('.', ',')}`);
+        if (copyBtn) {
+            copyBtn.classList.add('copied');
+            copyBtn.innerHTML = `<i data-lucide="check" style="width:14px; height:14px;"></i> <span>✓ Chave Pix Copiada!</span>`;
+            if (window.lucide) window.lucide.createIcons();
+
+            setTimeout(() => {
+                copyBtn.classList.remove('copied');
+                copyBtn.innerHTML = `<i data-lucide="copy" style="width:14px; height:14px;"></i> <span>Copiar Chave Pix</span>`;
+                if (window.lucide) window.lucide.createIcons();
+            }, 2500);
+        }
+    };
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(pixKey).then(handleSuccess).catch(handleSuccess);
+    } else {
+        handleSuccess();
+    }
+};
 
 // Event Listeners Setup
 function setupEventListeners() {
-    // Filter buttons
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
@@ -391,105 +432,138 @@ function setupEventListeners() {
         });
     });
 
-    // Cart toggles
-    cartToggle.addEventListener('click', openCart);
-    cartClose.addEventListener('click', closeCart);
-    cartOverlay.addEventListener('click', closeCart);
+    if (cartToggle) cartToggle.addEventListener('click', openCart);
+    if (cartClose) cartClose.addEventListener('click', closeCart);
+    if (cartOverlay) cartOverlay.addEventListener('click', closeCart);
 
-    // Delivery type toggles
     delBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             delBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             deliveryType = btn.getAttribute('data-type');
+            const addressBox = document.getElementById('address-box');
+            if (addressBox) addressBox.style.display = deliveryType === 'delivery' ? 'block' : 'none';
             updateCartUI();
         });
     });
 
-    // Payment type toggles
     const payBtns = document.querySelectorAll('.pay-btn');
     payBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             payBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            selectedPayment = btn.getAttribute('data-pay');
+            selectedPayment = btn.getAttribute('data-pay') || 'Pix (Chave Copia e Cola)';
+            const isCash = selectedPayment.toLowerCase().includes('dinheiro');
+            const isPix = selectedPayment.toLowerCase().includes('pix');
+            const cashBox = document.getElementById('cash-change-box');
+            const pixBox = document.getElementById('pix-lock-box');
+            if (cashBox) cashBox.style.display = isCash ? 'block' : 'none';
+            if (pixBox) pixBox.style.display = isPix ? 'block' : 'none';
         });
     });
 
-    // Send WhatsApp Order
-    btnSendWhatsapp.addEventListener('click', sendOrderToWhatsapp);
-
-    // Presentation Modal (Proposal)
-    const presTrigger = document.getElementById('presentation-trigger');
-    const presOverlay = document.getElementById('pres-modal-overlay');
-    const presClose = document.getElementById('pres-modal-close');
-    const presCancel = document.getElementById('pres-modal-cancel');
-
-    function closePresModal() {
-        if (presOverlay) presOverlay.classList.remove('active');
-    }
-
-    function openPresModal() {
-        if (presOverlay) presOverlay.classList.add('active');
-    }
-
-    if (presTrigger) presTrigger.addEventListener('click', openPresModal);
-    if (presClose) presClose.addEventListener('click', closePresModal);
-    if (presCancel) presCancel.addEventListener('click', closePresModal);
-
-    if (presOverlay) {
-        presOverlay.addEventListener('click', (e) => {
-            if (e.target === presOverlay) closePresModal();
-        });
+    if (btnSendWhatsapp) {
+        btnSendWhatsapp.addEventListener('click', sendOrderToWhatsapp);
     }
 
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            closePresModal();
             closeCart();
         }
     });
 }
 
 function openCart() {
-    cartDrawer.classList.add('active');
-    cartOverlay.classList.add('active');
+    if (cartDrawer) cartDrawer.classList.add('active', 'open');
+    if (cartOverlay) cartOverlay.classList.add('active', 'open');
+    document.body.style.overflow = 'hidden';
 }
 
 function closeCart() {
-    cartDrawer.classList.remove('active');
-    cartOverlay.classList.remove('active');
+    if (cartDrawer) cartDrawer.classList.remove('active', 'open');
+    if (cartOverlay) cartOverlay.classList.remove('active', 'open');
+    document.body.style.overflow = 'auto';
 }
 
-// Generate & Send WhatsApp Order Message
+window.openCart = openCart;
+window.closeCart = closeCart;
+window.sendWhatsAppOrder = sendOrderToWhatsapp;
+
+// Generate & Send WhatsApp Order Message (Padrão Claem)
 function sendOrderToWhatsapp() {
     if (cart.length === 0) {
-        alert('Seu carrinho está vazio! Adicione itens antes de enviar o pedido.');
+        showToast('Seu carrinho está vazio! Adicione itens antes de enviar o pedido.');
+        return;
+    }
+
+    const nameEl = document.getElementById('cust-name');
+    const addressEl = document.getElementById('cust-address');
+    const cashChangeEl = document.getElementById('cash-change-val');
+
+    const name = nameEl ? nameEl.value.trim() : '';
+    const address = addressEl ? addressEl.value.trim() : '';
+    const cashChange = cashChangeEl ? cashChangeEl.value.trim() : '';
+
+    if (deliveryType === 'delivery' && !address) {
+        showToast('Informe o endereço completo para a entrega.');
+        if (addressEl) addressEl.focus();
         return;
     }
 
     const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
     const deliveryFee = deliveryType === 'delivery' ? 7.00 : 0.00;
     const grandTotal = subtotal + deliveryFee;
-    const payment = selectedPayment || 'Pix';
 
-    let text = `🍕 *NOVO PEDIDO DE PIZZA - D'GUSTE WEBSITE*\n`;
-    text += `-------------------------------------------\n\n`;
-    
+    let text = `🍕 *NOVO PEDIDO DE PIZZA - D'GUSTE*\n`;
+    text += `-------------------------------------------\n`;
+    text += `📦 *Tipo:* ${deliveryType === 'delivery' ? '🛵 Tele-Entrega' : '🛍️ Retirada no Balcão'}\n`;
+    if (name) text += `👤 *Cliente:* ${name}\n`;
+    if (deliveryType === 'delivery' && address) {
+        text += `🏠 *Endereço:* ${address}\n`;
+    }
+    text += `\n*🛒 ITENS DO PEDIDO:*\n`;
+
     cart.forEach((item, i) => {
         text += `${i+1}. *${item.title}* (${item.size})\n`;
         text += `   Qtd: ${item.quantity}x • R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}\n\n`;
     });
 
     text += `-------------------------------------------\n`;
-    text += `*Forma de Entrega:* ${deliveryType === 'delivery' ? 'Tele-Entrega (Panazzolo/Região)' : 'Retirada no Balcão (Rua João Mocelin, 1493)'}\n`;
-    text += `*Forma de Pagamento:* ${payment}\n`;
-    text += `*Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
-    text += `*Taxa de Entrega:* ${deliveryType === 'delivery' ? 'R$ 7,00' : 'Grátis'}\n`;
-    text += `*TOTAL DO PEDIDO:* R$ ${grandTotal.toFixed(2).replace('.', ',')}\n\n`;
-    text += `📍 *Endereço de Entrega:* (Por favor, digite seu nome e endereço completo aqui ao enviar nesta conversa)`;
+    text += `💰 *Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+    text += `🛵 *Taxa de Entrega:* ${deliveryType === 'delivery' ? 'R$ 7,00' : 'Grátis (Balcão)'}\n`;
+    text += `💰 *TOTAL FINAL:* R$ ${grandTotal.toFixed(2).replace('.', ',')}\n\n`;
+
+    text += `💳 *FORMA DE PAGAMENTO:*\n`;
+    const isCash = selectedPayment.toLowerCase().includes('dinheiro');
+    const isPix = selectedPayment.toLowerCase().includes('pix');
+
+    if (isPix) {
+        text += `⚡ *PIX (Chave: 5430759626 - Valor: R$ ${grandTotal.toFixed(2).replace('.', ',')})*\n`;
+        text += `_Anexando o comprovante em seguida!_\n`;
+    } else if (isCash) {
+        text += `💵 *Dinheiro* ${cashChange ? `(Troco para R$ ${cashChange})` : '(Sem troco)'}\n`;
+    } else {
+        text += `💳 *Cartão de Crédito/Débito (Levar maquininha)*\n`;
+    }
+
+    text += `\n_Pedido enviado pelo Site Oficial D'Guste_`;
 
     const phone = "555430759626";
     const encodedText = encodeURIComponent(text);
     window.open(`https://wa.me/${phone}?text=${encodedText}`, '_blank');
+}
+
+function showToast(message) {
+    let toast = document.getElementById('toast-notification');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'toast-notification';
+        toast.className = 'toast-box';
+        document.body.appendChild(toast);
+    }
+    toast.innerText = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
 }

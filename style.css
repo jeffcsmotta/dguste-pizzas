@@ -1338,86 +1338,184 @@ h1, h2, h3, h4, .brand-name {
 }
 
 .cart-option-group label {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #A1A1AA;
-    margin-bottom: 6px;
-}
-
-.delivery-toggle, .payment-toggle {
-    display: flex;
+/* CONTINUAR ESCOLHENDO BUTTON - ALWAYS AMBER ORANGE (#F59E0B) */
+.btn-continue-shopping {
+    display: inline-flex;
+    align-items: center;
     gap: 6px;
-}
-
-.del-btn, .pay-btn {
-    flex: 1;
-    padding: 8px 10px;
-    font-size: 0.78rem;
-    font-weight: 700;
+    padding: 8px 16px;
+    background: rgba(245, 158, 11, 0.15) !important;
+    border: 1px solid #F59E0B !important;
+    border-radius: 9999px;
+    color: #F59E0B !important;
+    font-size: 0.84rem;
+    font-weight: 800;
     font-family: var(--font-heading);
-    background: #1C1C22;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #A1A1AA;
-    border-radius: var(--radius-sm);
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
     transition: all 0.2s ease;
+    text-decoration: none;
     user-select: none;
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.1);
 }
 
-.del-btn:hover, .pay-btn:hover {
-    border-color: var(--primary);
-    color: #FFFFFF;
+.btn-continue-shopping:hover {
+    background: #F59E0B !important;
+    color: #000000 !important;
+    border-color: #F59E0B !important;
+    box-shadow: 0 4px 16px rgba(245, 158, 11, 0.35);
 }
 
-.del-btn.active, .pay-btn.active {
-    border-color: var(--primary);
-    color: var(--primary);
-    background: rgba(245, 158, 11, 0.15);
-    box-shadow: 0 0 10px rgba(245, 158, 11, 0.15);
-}
-    gap: 8px;
+.btn-continue-shopping i {
+    color: #F59E0B !important;
 }
 
-.del-btn {
-    flex: 1;
-    padding: 8px;
-    font-size: 0.8rem;
-    background: #1C1C22;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #A1A1AA;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
+.btn-continue-shopping:hover i {
+    color: #000000 !important;
+}
+
+.cart-header-title {
+    color: #FFFFFF !important;
+    font-size: 1.2rem;
+    font-weight: 800;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 6px;
+    gap: 10px;
+    font-family: var(--font-heading);
 }
 
-.del-btn.active {
-    border-color: #FF9F0A;
-    color: #FF9F0A;
-    background: rgba(255, 159, 10, 0.15);
+.cart-header-title i {
+    color: var(--primary) !important;
+    width: 22px;
+    height: 22px;
 }
 
-.cart-select {
+.input-dark {
     width: 100%;
-    padding: 10px 12px;
-    background: #1C1C22;
+    padding: 11px 14px;
+    background: #0B0B0C;
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: var(--radius-sm);
     color: #FFFFFF;
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: 0.88rem;
 }
-    padding: 10px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
+
+.input-dark:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+}
+
+/* Pix Lock Info Box with Dynamic QR Code */
+.pix-lock-box {
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.25);
     border-radius: var(--radius-sm);
+    padding: 14px;
+    margin-top: 10px;
+}
+
+.pix-lock-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #10B981;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+
+.pix-qr-container {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.pix-qr-code {
+    width: 86px;
+    height: 86px;
+    border-radius: 8px;
+    background: #FFFFFF;
+    padding: 5px;
+    flex-shrink: 0;
+}
+
+.pix-qr-info {
+    flex: 1;
+}
+
+.pix-lock-desc {
+    font-size: 0.78rem;
+    color: #A1A1AA;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+
+/* CYAN COPY PIX BUTTON WITH SUCCESS GREEN TRANSITION */
+.btn-copy-pix {
+    width: 100%;
+    padding: 10px;
+    background: rgba(56, 189, 248, 0.12) !important;
+    border: 1px solid rgba(56, 189, 248, 0.4) !important;
+    color: #38BDF8 !important;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.25s ease;
+    user-select: none;
+}
+
+.btn-copy-pix:hover {
+    background: #0284C7 !important;
+    color: #FFFFFF !important;
+    border-color: #0284C7 !important;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+}
+
+.btn-copy-pix.copied {
+    background: #10B981 !important;
+    color: #000000 !important;
+    border-color: #10B981 !important;
+    font-weight: 900;
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+}
+
+.cart-summary { margin-bottom: 8px; }
+.summary-line { display: flex; justify-content: space-between; font-size: 0.9rem; color: #A1A1AA; margin-bottom: 8px; }
+.summary-line.total {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-line.total #cart-total-price {
+    color: #10B981 !important;
+    font-size: 1.35rem;
+    font-weight: 900;
+    font-family: var(--font-heading);
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+}
+
+.onira-signature {
+    text-align: center;
+    padding-top: 8px;
+    font-size: 0.78rem;
+    color: #9CA3AF;
+}
+
+.onira-signature strong {
+    color: #F59E0B !important;
+    font-weight: 800;
+}
     color: var(--text-main);
     font-family: var(--font-body);
 }
@@ -2363,6 +2461,16 @@ h1, h2, h3, h4, .brand-name {
     }
     .status-badge::after {
         content: "Aberto";
+    }
+}
+
+/* Mobile First: Oculta Hero no Mobile para focar direto no Cardápio / Busca */
+@media (max-width: 768px) {
+    .hero, .hero-section {
+        display: none !important;
+    }
+    .menu-section, #cardapio, #catalogo {
+        padding-top: 20px !important;
     }
 }
 
